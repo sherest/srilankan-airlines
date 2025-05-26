@@ -1,0 +1,61 @@
+.flight-booking-form {
+    width: 100%;
+}
+.flight-booking-form h2 {
+    text-align: center;
+    color: #036;
+    margin-bottom: 20px;
+}
+.flight-booking-form form {
+    background-color: #f8f8f8;
+    padding: 30px;
+    width: 70%;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.flight-booking-form form .form-group-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.flight-booking-form form .form-group-row .form-group {
+    flex: 1;
+}
+.flight-booking-form form .form-group-row .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+.flight-booking-form form .form-group-row .form-group input, .flight-booking-form form .form-group-row .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.flight-booking-form form .form-group-row .form-group input:focus, .flight-booking-form form .form-group-row .form-group select:focus {
+    outline: none;
+    border-color: #036;
+    box-shadow: 0 0 3px #036;
+}
+.flight-booking-form form .find-flights-button {
+    display: block;
+    width: 20%;
+    padding: 10px;
+    background-color: #036;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+}
+.flight-booking-form form .find-flights-button:hover {
+    background-color: #00509e;
+}
