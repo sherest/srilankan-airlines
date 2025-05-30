@@ -278,5 +278,17 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "cf-carousel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "reference",
+        "value": "",
+        "label": "Content Fragment Folder Path",
+        "valueType": "string"
+      }
+    ]
   }
 ]
