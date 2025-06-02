@@ -321,6 +321,28 @@
             ]
           },
           {
+            "component": "radio-group",
+            "label": "Arrow Buttons",
+            "name": "arrowNavigation",
+            "value": "0",
+            "valueType": "string",
+            "options": [
+              { "name": "Enable", "value": "0" },
+              { "name": "Disabled", "value": "1" }
+            ]
+          },
+          {
+            "component": "radio-group",
+            "label": "Auto Rotate",
+            "name": "autoRotate",
+            "value": "0",
+            "valueType": "string",
+            "options": [
+              { "name": "Enable", "value": "0" },
+              { "name": "Disabled", "value": "1" }
+            ]
+          },
+          {
             "component": "text",
             "name": "customStyle",
             "value": "",

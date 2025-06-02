@@ -59,6 +59,8 @@ export default function decorate(block) {
   const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
   const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl?.textContent.trim(), 10) : 3;
   const layout = block?.querySelector('[data-aue-prop="layout"]')?.textContent.trim() || 'verticle';
+  const arrowNavigation = parseInt(block?.querySelector('[data-aue-prop="arrowNavigation"]')?.textContent.trim(), 10) || 0;
+  const autoRotate = parseInt(block?.querySelector('[data-aue-prop="autoRotate"]')?.textContent.trim(), 10) || 0;
   const customStyle = block?.querySelector('[data-aue-prop="customStyle"]')?.textContent.trim() || '';
 
   if (!cfFolderPath) return;
@@ -90,9 +92,59 @@ export default function decorate(block) {
       });
       [...buttons.children].forEach((r) => r.classList.remove('selected'));
       button.classList.add('selected');
+      if (arrowNavigation) updateArrowVisibility(page);
     });
     return button;
   }
+
+  // Create left and right arrow buttons
+  const leftArrow = document.createElement('button');
+  leftArrow.classList.add('cf-carousel-arrow', 'cf-carousel-arrow-left');
+  leftArrow.innerHTML = '&#8592;'; // Left arrow symbol
+  leftArrow.style.display = 'none';
+
+  const rightArrow = document.createElement('button');
+  rightArrow.classList.add('cf-carousel-arrow', 'cf-carousel-arrow-right');
+  rightArrow.innerHTML = '&#8594;'; // Right arrow symbol
+  rightArrow.style.display = 'none';
+
+  let currentPage = 0;
+  let totalPages = 1;
+
+  function scrollToPage(page) {
+    block.scrollTo({
+      left: block.clientWidth * page,
+      behavior: 'smooth'
+    });
+    currentPage = page;
+    // Update nav button selection
+    [...buttons.children].forEach((r, idx) => {
+      r.classList.toggle('selected', idx === page);
+    });
+    updateArrowVisibility(page);
+  }
+
+  function updateArrowVisibility(page) {
+    if (totalPages <= 1) {
+      leftArrow.style.display = 'none';
+      rightArrow.style.display = 'none';
+      return;
+    }
+    leftArrow.style.display = page > 0 ? '' : 'none';
+    rightArrow.style.display = page < totalPages - 1 ? '' : 'none';
+  }
+
+  leftArrow.addEventListener('click', () => {
+    if (currentPage > 0) {
+      scrollToPage(currentPage - 1);
+    }
+  });
+
+  rightArrow.addEventListener('click', () => {
+    if (currentPage < totalPages - 1) {
+      scrollToPage(currentPage + 1);
+    }
+  });
 
   (async () => {
     try {
@@ -110,24 +162,31 @@ export default function decorate(block) {
 
       // Render navigation buttons
       const totalSlides = sortedItems.length;
-      const totalPages = Math.ceil(totalSlides / slidesToShow);
+      totalPages = Math.ceil(totalSlides / slidesToShow);
       for (let page = 0; page < totalPages; page++) {
         buttons.append(createNavButton(page, totalSlides, slidesToShow, block, buttons));
       }
 
-      // Insert navigation buttons
+      // Insert navigation buttons and arrows
       if (block.nextElementSibling) block.nextElementSibling.replaceWith(buttons);
       else block.parentElement.append(buttons);
+      block.parentElement.append(leftArrow);
+      block.parentElement.append(rightArrow);
 
       // Add custom class selector
       if (customStyle) block.classList.add(customStyle);
 
+      // Initial arrow visibility
+      updateArrowVisibility(0);
+
       // Highlight correct button on scroll
       block.addEventListener('scroll', () => {
         const page = Math.round(block.scrollLeft / block.clientWidth);
+        currentPage = page;
         [...buttons.children].forEach((r, idx) => {
           r.classList.toggle('selected', idx === page);
         });
+        updateArrowVisibility(page);
       }, { passive: true });
     } catch (error) {
       console.error('Error loading content fragments or user location:', error);
