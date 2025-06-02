@@ -80,7 +80,7 @@ export default function decorate(block) {
         button.title = 'Carousel Nav';
         if (!i) button.classList.add('selected');
         button.addEventListener('click', () => {
-          block.scrollTo({ top: 0, left: row.offsetLeft - row.parentNode.offsetLeft, behavior: 'smooth' });
+          block.scrollTo({ top: 0, left: slide.offsetLeft - slide.parentNode.offsetLeft, behavior: 'smooth' });
           [...buttons.children].forEach((r) => r.classList.remove('selected'));
           button.classList.add('selected');
         });
