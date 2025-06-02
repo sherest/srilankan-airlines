@@ -54,6 +54,8 @@ export function createTabs($block) {
 export default function decorate($block) {
   const tabs = createTabs($block);
 
+  if (!tabs) return null;
+
   tabs.forEach((tab, index) => {
     const { $tab, title, name } = tab;
     const $button = document.createElement('button');
