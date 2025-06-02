@@ -97,13 +97,16 @@ main .cf-carousel-wrapper > .cf-carousel-buttons > button.selected {
 main .cf-carousel-wrapper > .cf-carousel-arrow {
   position: absolute;
   top: 50%;
-  left: 0;
   transform: translateY(-50%);
   background-color: var(--highlight-background-color);
   color: var(--highlight-text-color);
   border: none;
   padding: 10px;
   cursor: pointer;
+}
+
+main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-right {
+  left: 0;
 }
 main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-right {
   right: 0;
