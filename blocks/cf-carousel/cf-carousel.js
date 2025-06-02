@@ -65,7 +65,7 @@ export default function decorate(block) {
       console.log('Filtered & Sorted Items:', sortedItems);
       
       block.replaceChildren();
-      sortedItems.forEach((item) => {
+      sortedItems.forEach((item, i) => {
         const slide = `<div class="slide">
             <div class="carousel-image"><picture><img src="/content/dam/srilanka-airlines/assets/carousel/ci-1.jpg" data-aue-prop="image" data-aue-label="Image" data-aue-type="media" loading="eager"></picture></div>
             <div class="carousel-text">
