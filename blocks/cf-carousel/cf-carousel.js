@@ -53,10 +53,10 @@ export default function decorate(block) {
   const buttons = document.createElement('div');
   buttons.classList.add('cf-carousel-buttons');
   
-  const cfFolderPath = block?.querySelector('[data-aue-prop="reference"]') || '';
+  const cfFolderPath = block?.querySelector('[data-aue-prop="reference"]')?.textContent?.trim() || '';
   const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
-  const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl.textContent || slidesToShowEl.value, 10) : 3;
-  const layout = block?.querySelector('[data-aue-prop="layout"]') || 'verticle';
+  const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl?.textContent.trim(), 10) : 3;
+  const layout = block?.querySelector('[data-aue-prop="layout"]')?.textContent.trim() || 'verticle';
 
   if (!cfFolderPath) return;
 
