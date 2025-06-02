@@ -75,6 +75,7 @@ export default function decorate(block) {
       <div class="cf-carousel-text">
         <h3>${item.title}</h3>
         <p>${item.description?.plaintext || item.description || ''}</p>
+        ${item.button ? `<button class="cf-carousel-item-button">${item.button}</button>` : ''}
       </div>
     `;
     return slide;
@@ -170,6 +171,8 @@ export default function decorate(block) {
       // Insert navigation buttons and arrows
       if (block.nextElementSibling) block.nextElementSibling.replaceWith(buttons);
       else block.parentElement.append(buttons);
+
+      // Insert navigation arrows
       if (arrowNavigation) {
         block.parentElement.append(leftArrow);
         block.parentElement.append(rightArrow);
