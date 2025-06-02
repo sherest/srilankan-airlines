@@ -54,7 +54,10 @@ export function createTabs($block) {
 export default function decorate($block) {
   const tabs = createTabs($block);
 
-  if (!tabs) return null;
+  if (!tabs) {
+    $block.closest('.section').classList.add('hidden');
+    return null;
+  
 
   tabs.forEach((tab, index) => {
     const { $tab, title, name } = tab;
