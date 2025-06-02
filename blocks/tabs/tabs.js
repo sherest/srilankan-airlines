@@ -25,8 +25,9 @@ export function createTabs($block) {
     };
   });
 
-  // If all li elements have undefined or empty title or name, do not render tabs
-  const allTabsInvalid = tabs.every(tab => !tab.title || !tab.name);
+  // If all li elements have undefined, empty, or string 'undefined' title or name, do not render tabs
+  const isInvalid = val => !val || val.trim().toLowerCase() === 'undefined';
+  const allTabsInvalid = tabs.every(tab => isInvalid(tab.title) || isInvalid(tab.name));
   if (allTabsInvalid) return null;
 
   // move $ul below section div
