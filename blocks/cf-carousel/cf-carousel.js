@@ -50,9 +50,11 @@ async function userLocation() {
 }
 
 export default function decorate(block) {
+  // Create navigation buttons container
   const buttons = document.createElement('div');
   buttons.classList.add('cf-carousel-buttons');
-  
+
+  // Get configuration from block attributes
   const cfFolderPath = block?.querySelector('[data-aue-prop="reference"]')?.textContent?.trim() || '';
   const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
   const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl?.textContent.trim(), 10) : 3;
@@ -60,46 +62,59 @@ export default function decorate(block) {
 
   if (!cfFolderPath) return;
 
+  // Helper to create a slide element
+  function createSlide(item) {
+    const slide = document.createElement('div');
+    slide.classList.add('slide', layout);
+    slide.style.width = `${100 / slidesToShow}%`;
+    slide.innerHTML = `
+      <div class="cf-carousel-image"><picture><img src="${item.image._path}" loading="eager"></picture></div>
+      <div class="cf-carousel-text">
+        <h3>${item.title}</h3>
+        <p>${item.description?.plaintext || item.description || ''}</p>
+      </div>
+    `;
+    return slide;
+  }
+
+  // Helper to create a navigation button
+  function createNavButton(page, totalSlides, slidesToShow, block, buttons) {
+    const button = document.createElement('button');
+    button.title = `Go to slides ${page * slidesToShow + 1} - ${Math.min((page + 1) * slidesToShow, totalSlides)}`;
+    if (page === 0) button.classList.add('selected');
+    button.addEventListener('click', () => {
+      block.scrollTo({
+        left: block.clientWidth * page,
+        behavior: 'smooth'
+      });
+      [...buttons.children].forEach((r) => r.classList.remove('selected'));
+      button.classList.add('selected');
+    });
+    return button;
+  }
+
   (async () => {
     try {
+      // Fetch and process data
       const cfItems = await loadContentFragments(cfFolderPath);
-      const {location} = await userLocation();
+      const { location } = await userLocation();
       const filteredItems = filterItemsByLocation(cfItems, location);
       const sortedItems = sortItemsByLastModified(filteredItems);
 
+      // Render slides
       block.replaceChildren();
-      sortedItems.forEach((item, i) => {
-        const row = document.createElement("div");
-        row.classList.add('slide');
-        row.style.width = `${100 / slidesToShow}%`;
-        row.innerHTML = `
-          <div class="cf-carousel-image"><picture><img src="${item.image._path}" loading="eager"></picture></div>
-          <div class="cf-carousel-text">
-            <h3>${item.title}</h3>
-            <p>${item.description?.plaintext || item.description || ''}</p>
-          </div>
-        `;
-        block.append(row);
+      sortedItems.forEach(item => {
+        block.append(createSlide(item));
       });
 
-      // Navigation buttons (pages)
+      // Render navigation buttons
       const totalSlides = sortedItems.length;
       const totalPages = Math.ceil(totalSlides / slidesToShow);
       for (let page = 0; page < totalPages; page++) {
-        const button = document.createElement('button');
-        button.title = `Go to slides ${page * slidesToShow + 1} - ${Math.min((page + 1) * slidesToShow, totalSlides)}`;
-        if (page === 0) button.classList.add('selected');
-        button.addEventListener('click', () => {
-          block.scrollTo({
-            left: block.clientWidth * page,
-            behavior: 'smooth'
-          });
-          [...buttons.children].forEach((r) => r.classList.remove('selected'));
-          button.classList.add('selected');
-        });
-        buttons.append(button);
+        buttons.append(createNavButton(page, totalSlides, slidesToShow, block, buttons));
       }
 
+      // Insert navigation buttons
       if (block.nextElementSibling) block.nextElementSibling.replaceWith(buttons);
       else block.parentElement.append(buttons);
 
@@ -107,8 +122,7 @@ export default function decorate(block) {
       block.addEventListener('scroll', () => {
         const page = Math.round(block.scrollLeft / block.clientWidth);
         [...buttons.children].forEach((r, idx) => {
-          if (idx === page) r.classList.add('selected');
-          else r.classList.remove('selected');
+          r.classList.toggle('selected', idx === page);
         });
       }, { passive: true });
     } catch (error) {

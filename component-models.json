@@ -291,7 +291,7 @@
       },
       {
         "component": "container",
-        "label": "Configurations",
+        "label": "Carousel Config",
         "name": "container",
         "valueType": "string",
         "collapsible": true,
@@ -311,7 +311,7 @@
           },
           {
             "component": "radio-group",
-            "label": "Layout",
+            "label": "Card Layout",
             "name": "radio",
             "value": "verticle",
             "valueType": "string",
