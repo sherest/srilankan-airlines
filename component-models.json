@@ -319,6 +319,13 @@
               { "name": "Verticle", "value": "verticle" },
               { "name": "Horizontal", "value": "horizontal" }
             ]
+          },
+          {
+            "component": "text",
+            "name": "customStyle",
+            "value": "",
+            "label": "Custom class selector",
+            "valueType": "string"
           }
         ]
       }

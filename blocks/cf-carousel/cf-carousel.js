@@ -59,6 +59,7 @@ export default function decorate(block) {
   const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
   const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl?.textContent.trim(), 10) : 3;
   const layout = block?.querySelector('[data-aue-prop="layout"]')?.textContent.trim() || 'verticle';
+  const customStyle = block?.querySelector('[data-aue-prop="customStyle"]')?.textContent.trim() || '';
 
   if (!cfFolderPath) return;
 
@@ -117,6 +118,9 @@ export default function decorate(block) {
       // Insert navigation buttons
       if (block.nextElementSibling) block.nextElementSibling.replaceWith(buttons);
       else block.parentElement.append(buttons);
+
+      // Add custom class selector
+      if (customStyle) block.classList.add(customStyle);
 
       // Highlight correct button on scroll
       block.addEventListener('scroll', () => {
