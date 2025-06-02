@@ -312,7 +312,7 @@
           {
             "component": "radio-group",
             "label": "Card Layout",
-            "name": "radio",
+            "name": "layout",
             "value": "verticle",
             "valueType": "string",
             "options": [
