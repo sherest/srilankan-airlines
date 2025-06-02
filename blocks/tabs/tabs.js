@@ -24,6 +24,11 @@ export function createTabs($block) {
       $tab: $li,
     };
   });
+
+  // If all li elements have undefined or empty title or name, do not render tabs
+  const allTabsInvalid = tabs.every(tab => !tab.title || !tab.name);
+  if (allTabsInvalid) return null;
+
   // move $ul below section div
   $block.replaceChildren($ul);
 
@@ -50,7 +55,6 @@ export default function decorate($block) {
 
   tabs.forEach((tab, index) => {
     const { $tab, title, name } = tab;
-    if (!title || !name) return;
     const $button = document.createElement('button');
     $button.textContent = title;
     $button.setAttribute('data-tab-index', index);
