@@ -1,8 +1,8 @@
-main .carousel-container {
+main .cf-carousel-container {
   padding: 0;
 }
 
-main .carousel {
+main .cf-carousel {
   display: flex;
   scroll-snap-type: x mandatory;
   overflow: scroll hidden;
@@ -11,7 +11,7 @@ main .carousel {
   margin: auto;
 }
 
-main .carousel picture {
+main .cf-carousel picture {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -21,14 +21,14 @@ main .carousel picture {
   box-sizing: border-box;
 }
 
-main .carousel img {
+main .cf-carousel img {
   object-fit: cover;
   width: 100%;
   height: 100%;
   object-position: 90%;
 }
   
-main .carousel > div {
+main .cf-carousel > div {
   width: 100%;
   flex-shrink: 0;
   scroll-snap-align: start;
@@ -38,7 +38,7 @@ main .carousel > div {
   display: flex;
 }
 
-main .carousel div.carousel-text {
+main .cf-carousel div.cf-carousel-text {
   max-width: 1200px;
   margin: 0 auto;
   background-color: white;
@@ -46,30 +46,30 @@ main .carousel div.carousel-text {
   padding: 0 28px;
 }
 
-main .carousel div.carousel-text p {
+main .cf-carousel div.cf-carousel-text p {
   margin: 10px 0 16px;
   line-height: 1.2;
 }
 
-main .carousel div.carousel-text h2 {
+main .cf-carousel div.cf-carousel-text h2 {
   margin: 0;
   margin-top: 16px; 
 }
 
-main .carousel div.carousel-text .button {
+main .cf-carousel div.cf-carousel-text .button {
   margin: 0;
 }
   
 
-main .carousel::-webkit-scrollbar {
+main .cf-carousel::-webkit-scrollbar {
     display: none;
   }
 
-main .carousel-wrapper {
+main .cf-carousel-wrapper {
   max-width: unset;
 }
 
-main .carousel-wrapper > :last-child {
+main .cf-carousel-wrapper > :last-child {
   text-align: center;
   margin-top: 0;
   position: absolute;
@@ -79,7 +79,7 @@ main .carousel-wrapper > :last-child {
   justify-content: center;
 }
 
-main .carousel-wrapper > :last-child button {
+main .cf-carousel-wrapper > :last-child button {
   display: block;
   height: 10px;
   width: 10px;
@@ -89,6 +89,6 @@ main .carousel-wrapper > :last-child button {
   background-color: var(--highlight-background-color);
 }
 
-main .carousel-wrapper > :last-child button.selected {
+main .cf-carousel-wrapper > :last-child button.selected {
   background-color: var(--link-color);
 }
