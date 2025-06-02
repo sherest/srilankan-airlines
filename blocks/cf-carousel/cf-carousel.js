@@ -38,7 +38,7 @@ function sortItemsByLastModified(items) {
 async function loadContentFragments(cfQueryPath) {
   const cfFolder = await fetch(`/graphql/execute.json/srilanka-airlines/${cfQueryPath}`);
   const cfFolderData = await cfFolder.json();
-  const cfItems = cfFolderData?.data?.slCfModelList.items;
+  const cfItems = Object.values(cfFolderData?.data)?.[0]?.items;
   return cfItems;
 }
 
