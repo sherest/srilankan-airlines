@@ -66,21 +66,22 @@ export default function decorate(block) {
       
       block.replaceChildren();
       sortedItems.forEach((item, i) => {
-        const slide = `<div class="slide">
-            <div class="carousel-image"><picture><img src="/content/dam/srilanka-airlines/assets/carousel/ci-1.jpg" data-aue-prop="image" data-aue-label="Image" data-aue-type="media" loading="eager"></picture></div>
-            <div class="carousel-text">
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-            </div>
+        const row = document.createElement("div");
+        row.classList.add('slide');
+        row.innerHTML = `
+        <div class="carousel-image"><picture><img src="/content/dam/srilanka-airlines/assets/carousel/ci-1.jpg" data-aue-prop="image" data-aue-label="Image" data-aue-type="media" loading="eager"></picture></div>
+        <div class="carousel-text">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
         </div>`;
-        block.insertAdjacentHTML('beforeend', slide);
+        block.append(row);
 
         /* buttons */
         const button = document.createElement('button');
         button.title = 'Carousel Nav';
         if (!i) button.classList.add('selected');
         button.addEventListener('click', () => {
-          block.scrollTo({ top: 0, left: slide.offsetLeft - slide.parentNode.offsetLeft, behavior: 'smooth' });
+          block.scrollTo({ top: 0, left: row.offsetLeft - row.parentNode.offsetLeft, behavior: 'smooth' });
           [...buttons.children].forEach((r) => r.classList.remove('selected'));
           button.classList.add('selected');
         });
