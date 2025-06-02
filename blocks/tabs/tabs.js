@@ -57,6 +57,7 @@ export default function decorate($block) {
   if (!tabs) {
     $block.closest('.section').classList.add('hidden');
     return null;
+  }
   
 
   tabs.forEach((tab, index) => {
