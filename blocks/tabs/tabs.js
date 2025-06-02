@@ -49,8 +49,9 @@ export default function decorate($block) {
   const tabs = createTabs($block);
 
   tabs.forEach((tab, index) => {
-    const $button = document.createElement('button');
     const { $tab, title, name } = tab;
+    if (!title || !name) return;
+    const $button = document.createElement('button');
     $button.textContent = title;
     $button.setAttribute('data-tab-index', index);
     $tab.replaceChildren($button);
