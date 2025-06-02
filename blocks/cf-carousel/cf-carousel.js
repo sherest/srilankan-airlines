@@ -2,12 +2,14 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function filterItemsByLocation(items, location) {
+function filterItemsByLocation(items, locations) {
+  if (!Array.isArray(locations)) locations = [locations];
   return items.filter(item =>
     Array.isArray(item.locationTag) &&
     item.locationTag.some(tag => {
       const parts = tag.split(':');
-      return parts[1]?.trim().toLowerCase() === location.toLowerCase();
+      const tagLocation = parts[1]?.trim().toLowerCase();
+      return locations.some(loc => tagLocation === loc.toLowerCase());
     })
   );
 }
@@ -44,7 +46,7 @@ async function userLocation() {
   await delay(200);
 
   return {
-    location: 'Delhi'
+    location: ['Delhi', 'Bangalore', 'Chennai']
   };
 }
 
