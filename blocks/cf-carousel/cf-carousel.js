@@ -92,7 +92,7 @@ export default function decorate(block) {
       });
       [...buttons.children].forEach((r) => r.classList.remove('selected'));
       button.classList.add('selected');
-      if (arrowNavigation) updateArrowVisibility(page);
+      updateArrowVisibility(page);
     });
     return button;
   }
@@ -170,14 +170,16 @@ export default function decorate(block) {
       // Insert navigation buttons and arrows
       if (block.nextElementSibling) block.nextElementSibling.replaceWith(buttons);
       else block.parentElement.append(buttons);
-      block.parentElement.append(leftArrow);
-      block.parentElement.append(rightArrow);
+      if (arrowNavigation) {
+        block.parentElement.append(leftArrow);
+        block.parentElement.append(rightArrow);
+      }
 
       // Add custom class selector
       if (customStyle) block.classList.add(customStyle);
 
       // Initial arrow visibility
-      updateArrowVisibility(0);
+      if (arrowNavigation) updateArrowVisibility(0);
 
       // Highlight correct button on scroll
       block.addEventListener('scroll', () => {
@@ -186,7 +188,7 @@ export default function decorate(block) {
         [...buttons.children].forEach((r, idx) => {
           r.classList.toggle('selected', idx === page);
         });
-        updateArrowVisibility(page);
+        if (arrowNavigation) updateArrowVisibility(page);
       }, { passive: true });
     } catch (error) {
       console.error('Error loading content fragments or user location:', error);
