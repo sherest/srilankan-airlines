@@ -105,7 +105,7 @@ main .cf-carousel-wrapper > .cf-carousel-arrow {
   cursor: pointer;
 }
 
-main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-right {
+main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-left {
   left: 0;
 }
 main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-right {
