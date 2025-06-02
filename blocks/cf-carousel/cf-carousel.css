@@ -67,6 +67,7 @@ main .cf-carousel::-webkit-scrollbar {
 
 main .cf-carousel-wrapper {
   max-width: unset;
+  position: relative;
 }
 
 main .cf-carousel-wrapper > .cf-carousel-buttons {
@@ -91,4 +92,19 @@ main .cf-carousel-wrapper > .cf-carousel-buttons > button {
 
 main .cf-carousel-wrapper > .cf-carousel-buttons > button.selected {
   background-color: var(--link-color);
+}
+
+main .cf-carousel-wrapper > .cf-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-text-color);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+main .cf-carousel-wrapper > .cf-carousel-arrow.cf-carousel-arrow-right {
+  right: 0;
 }
