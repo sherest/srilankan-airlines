@@ -59,8 +59,8 @@ export default function decorate(block) {
   const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
   const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl?.textContent.trim(), 10) : 3;
   const layout = block?.querySelector('[data-aue-prop="layout"]')?.textContent.trim() || 'verticle';
-  const arrowNavigation = parseInt(block?.querySelector('[data-aue-prop="arrowNavigation"]')?.textContent.trim(), 10) || 0;
-  const autoRotate = parseInt(block?.querySelector('[data-aue-prop="autoRotate"]')?.textContent.trim(), 10) || 0;
+  const arrowNavigation = block?.querySelector('[data-aue-prop="arrowNavigation"]')?.textContent.trim()?.toLowerCase() === 'true' || true;
+  const autoRotate = block?.querySelector('[data-aue-prop="autoRotate"]')?.textContent.trim()?.toLowerCase() === 'true' || true;
   const customStyle = block?.querySelector('[data-aue-prop="customStyle"]')?.textContent.trim() || '';
 
   if (!cfFolderPath) return;
