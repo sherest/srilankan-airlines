@@ -288,6 +288,38 @@
         "value": "",
         "label": "Content Fragment Folder Path",
         "valueType": "string"
+      },
+      {
+        "component": "container",
+        "label": "Configurations",
+        "name": "container",
+        "valueType": "string",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "select",
+            "label": "Slides Visible at Once",
+            "name": "slidesToShow",
+            "value": "3",
+            "valueType": "number",
+            "options": [
+              { "name": "2", "value": 2 },
+              { "name": "3", "value": 3 },
+              { "name": "4", "value": 4 },
+              { "name": "5", "value": 5 }
+            ]
+          },
+          {
+            "component": "radio-group",
+            "label": "Layout",
+            "name": "radio",
+            "valueType": "boolean",
+            "options": [
+              { "name": "Verticle", "value": true },
+              { "name": "Horizontal", "value": false }
+            ]
+          }
+        ]
       }
     ]
   }
