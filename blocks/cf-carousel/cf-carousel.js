@@ -52,11 +52,14 @@ async function userLocation() {
 export default function decorate(block) {
   const buttons = document.createElement('div');
   buttons.classList.add('cf-carousel-buttons');
-  const cfFolderPath = block?.textContent?.trim() || '';
+  
+  const cfFolderPath = block?.querySelector('[data-aue-prop="reference"]') || '';
+  const slidesToShowEl = block?.querySelector('[data-aue-prop="slidesToShow"]');
+  const slidesToShow = slidesToShowEl ? parseInt(slidesToShowEl.textContent || slidesToShowEl.value, 10) : 3;
+  const layout = block?.querySelector('[data-aue-prop="layout"]') || 'verticle';
+
   if (!cfFolderPath) return;
 
-  const slidesToShow = 3; // Configurable: set to 2, 3, 4, or 5
-  const classes = ['image', 'text'];
   (async () => {
     try {
       const cfItems = await loadContentFragments(cfFolderPath);

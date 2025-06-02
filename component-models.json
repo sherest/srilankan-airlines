@@ -313,11 +313,11 @@
             "component": "radio-group",
             "label": "Layout",
             "name": "radio",
-            "value": true,
-            "valueType": "boolean",
+            "value": "verticle",
+            "valueType": "string",
             "options": [
-              { "name": "Verticle", "value": true },
-              { "name": "Horizontal", "value": false }
+              { "name": "Verticle", "value": "verticle" },
+              { "name": "Horizontal", "value": "horizontal" }
             ]
           }
         ]
