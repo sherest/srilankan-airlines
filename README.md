@@ -7,8 +7,8 @@ Codebase for the fictional WKND site, showcasing the capabilities of Adobe's Edg
 - Document based content authoring
 
 ## Environments
-- Preview: https://main--wknd-xwalk--adobe-rnd.aem.page/
-- Live: https://main--wknd-xwalk--adobe-rnd.aem.live/
+- Preview: https://main--srilankan-airlines--sherest.aem.page/
+- Live: https://main--srilankan-airlines--sherest.aem.live/
 
 ## Installation
 
