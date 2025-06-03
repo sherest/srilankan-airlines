@@ -1,7 +1,7 @@
 {
   "mappings": [
     "/:/",
-    "/content/wknd-xwalk/metadata.json:/metadata.json",
-    "/content/wknd-xwalk/redirects.json:/redirects.json"
+    "/content/shmehta/srilankan-airlines/metadata.json:/metadata.json",
+    "/content/shmehta/srilankan-airlines/redirects.json:/redirects.json"
   ]
 }
